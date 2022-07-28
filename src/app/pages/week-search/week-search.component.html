@@ -1,0 +1,115 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-search">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-report">新增页面</a>
+    </li>
+  </ul>
+</div>
+<div nz-row  class="searchDiv">
+  <div nz-col [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="2" [nzOffset]="3">
+    <nz-form-label nzFor="name">姓名</nz-form-label>
+    <input nz-input id="name" [(ngModel)]="searchReport.name"/>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="2" [nzOffset]="3">
+    <nz-form-label nzFor="job">部门 </nz-form-label>
+    <nz-select id="job" style="width: 98px" [(ngModel)]="searchReport.duty">
+      <nz-option [nzLabel]="'测试部门'" [nzValue]="'测试部门'"></nz-option>
+      <nz-option [nzLabel]="'开发部门'" [nzValue]="'开发部门'"></nz-option>
+      <nz-option [nzLabel]="'生产部门'" [nzValue]="'生产部门'"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="3" [nzOffset]="2">
+    <nz-form-label nzFor="achieve">本周计划达成率</nz-form-label><br/>
+    <span>从</span>
+    <nz-select style="width: 70px;" id="achieve" [(ngModel)]="searchReport.startAchieve">
+      <nz-option [nzLabel]="0"  [nzValue]="0"></nz-option>
+      <nz-option [nzLabel]="10" [nzValue]="10"></nz-option>
+      <nz-option [nzLabel]="20" [nzValue]="20"></nz-option>
+      <nz-option [nzLabel]="30" [nzValue]="30"></nz-option>
+      <nz-option [nzLabel]="40" [nzValue]="40"></nz-option>
+      <nz-option [nzLabel]="50" [nzValue]="50"></nz-option>
+      <nz-option [nzLabel]="60" [nzValue]="60"></nz-option>
+      <nz-option [nzLabel]="70" [nzValue]="70"></nz-option>
+      <nz-option [nzLabel]="80" [nzValue]="80"></nz-option>
+      <nz-option [nzLabel]="90" [nzValue]="90"></nz-option>
+      <nz-option [nzLabel]="100"[nzValue]="100"></nz-option>
+    </nz-select>
+    <span>%到</span>
+    <nz-select style="width: 70px" [(ngModel)]="searchReport.endAchieve">
+      <nz-option [nzLabel]="0"  [nzValue]="0"></nz-option>
+      <nz-option [nzLabel]="10" [nzValue]="10"></nz-option>
+      <nz-option [nzLabel]="20" [nzValue]="20"></nz-option>
+      <nz-option [nzLabel]="30" [nzValue]="30"></nz-option>
+      <nz-option [nzLabel]="40" [nzValue]="40"></nz-option>
+      <nz-option [nzLabel]="50" [nzValue]="50"></nz-option>
+      <nz-option [nzLabel]="60" [nzValue]="60"></nz-option>
+      <nz-option [nzLabel]="70" [nzValue]="70"></nz-option>
+      <nz-option [nzLabel]="80" [nzValue]="80"></nz-option>
+      <nz-option [nzLabel]="90" [nzValue]="90"></nz-option>
+      <nz-option [nzLabel]="100"[nzValue]="100"></nz-option>
+    </nz-select>
+    <span>%</span>
+   </div>
+  <div nz-col [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="3" [nzOffset]="3">
+    <nz-form-label nzFor="weekNumber">周次</nz-form-label><br/>
+    <nz-input-number id="weekNumber"  [nzMin]="1" [nzMax]="100" [nzStep]="1" [(ngModel)]="searchReport.weekNumber"></nz-input-number>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="4" [nzOffset]="3">
+    <nz-form-label >起始日期</nz-form-label>
+    <nz-range-picker [nzFormat]="'yyyy-MM-dd HH:mm:ss'" [(ngModel)]="dateList"></nz-range-picker>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="8" [nzLg]="6" [nzXl]="4" [nzOffset]="4">
+    <nz-form-label nzFor="state">周报状态 </nz-form-label><br/>
+    <nz-select style="width: 100px" id="state" [(ngModel)]="searchReport.state">
+      <nz-option nzLabel="新增" [nzValue]="'新增'"></nz-option>
+      <nz-option nzLabel="审批" [nzValue]="'审批'"></nz-option>
+      <nz-option nzLabel="待修改" [nzValue]="'待修改'"></nz-option>
+      <nz-option nzLabel="已改" [nzValue]="'已改'"></nz-option>
+      <nz-option nzLabel="归档" [nzValue]="'归档'"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="8" [nzLg]="6" [nzXl]="2" [nzOffset]="3">
+    <nz-form-label nzFor="approval">审阅人 </nz-form-label>
+    <nz-select style="width: 100px" id="approval"  [(ngModel)]="searchReport.approver">
+      <nz-option nzLabel="张三" [nzValue]="'张三'"></nz-option>
+      <nz-option nzLabel="王五" [nzValue]="'王五'"></nz-option>
+      <nz-option nzLabel="李四" [nzValue]="'李四'"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="8" [nzLg]="6" [nzXl]="2" [nzOffset]="18">
+    <button nz-button (click)="clear()">清除</button>
+  </div>
+  <div nz-col [nzSm]="12" [nzMd]="8" [nzLg]="6" [nzXl]="2" [nzOffset]="1">
+    <button nz-button (click)="search()">查询</button>
+  </div>
+</div>
+<div class="tableDiv">
+  <nz-table nzShowPagination="true" nzShowSizeChanger #middleTable nzSize="small" [nzData]="reportList">
+    <thead>
+    <tr>
+      <th *ngFor="let colum of listOfColum" [nzSortFn]="colum.compare" >
+        {{colum.title}}
+      </th>
+      <th nzWidth="15%">编辑</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of middleTable.data">
+      <td>{{data.name}}</td>
+      <td>{{data.duty}}</td>
+      <td>{{data.weekNumber}}</td>
+      <td>{{data.achieveRate}}</td>
+      <td>{{data.state}}</td>
+      <td>{{data.approver}}</td>
+      <td>
+        <button nz-button (click)="toDetail(data.id!)">详细</button>
+        &nbsp;
+        <button nz-button (click)="toApproval(data.id!)"  *ngIf="data.approver==user.username&&(data.state=='审批'||data.state=='已改')">审批</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

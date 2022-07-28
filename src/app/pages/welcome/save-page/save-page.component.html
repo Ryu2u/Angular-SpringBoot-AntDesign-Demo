@@ -1,0 +1,90 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/worknote">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/savePage">新增页面</a>
+    </li>
+  </ul>
+</div>
+<form nz-form [formGroup]="validateFrom" [nzLayout]="'vertical'">
+ <nz-card [nzTitle]="'添加记录'" [nzBordered]="false">
+   <div nz-row [nzGutter]="16">
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="nameInput">姓名</nz-form-label>
+         <nz-form-control [nzErrorTip]="'请输入姓名'">
+           <input nz-input formControlName="nameInput" id="nameInput" #name/>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" [nzOffset]="4">
+       <nz-form-item>
+         <nz-form-label nzFor="startDate">日期</nz-form-label>
+         <nz-form-control [nzErrorTip]="'日期不能为空'">
+           <nz-date-picker
+             formControlName="startDate"
+             nzShowTime
+             nzFormat="yyyy-MM-dd HH:mm:ss"
+             [(ngModel)]=date
+             (nzOnOk)="onOk($event)"
+           ></nz-date-picker>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+
+     <div nz-col nzSm="24" nzMd="12" nzLg="8" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="stepInput">项目阶段</nz-form-label>
+         <nz-form-control [nzErrorTip]="'项目阶段不能为空'">
+           <input nz-input formControlName="stepInput" id="stepInput" #step/>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" nzXl="8" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="contentInput">工作内容</nz-form-label>
+         <nz-form-control [nzErrorTip]="'工作内容不能为空'">
+           <textarea nz-input formControlName="contentInput" id="contentInput"  #content></textarea>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" nzXl="8" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="achInput">记录内容</nz-form-label>
+         <nz-form-control [nzErrorTip]="'记录内容不能为空'">
+           <textarea nz-input formControlName="achInput"  id="achInput"  #achievements></textarea>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" nzXl="8" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="resInput">引用资源</nz-form-label>
+         <nz-form-control [nzErrorTip]="'引用资源不能为空'">
+           <textarea formControlName="resInput" nz-input id="resInput" #resource></textarea>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+     <div nz-col nzSm="24" nzMd="12" nzLg="6" nzXl="8" [nzOffset]="2">
+       <nz-form-item>
+         <nz-form-label  nzFor="proInput">问题</nz-form-label>
+         <nz-form-control [nzErrorTip]="'问题不能为空'">
+           <textarea nz-input formControlName="proInput" id="proInput" #problem></textarea>
+         </nz-form-control>
+       </nz-form-item>
+     </div>
+   </div>
+ </nz-card>
+</form>
+<div class="btn">
+  <button nz-button (click)="clear(name,step,content,achievements,resource,problem)">清除</button>
+  <button nz-button (click)="save(name.value,step.value,content.value,achievements.value,resource.value,problem.value)">
+    添加
+  </button>
+  <app-details-page style="margin-left: 100px" *ngIf="flag" [detailNote]="saveWorkNote"></app-details-page>
+</div>
+

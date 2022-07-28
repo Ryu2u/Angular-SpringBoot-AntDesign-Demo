@@ -1,0 +1,101 @@
+div {
+  border: 1px;
+}
+.top {
+  width: 100%;
+  height: 100px;
+}
+.work_middle {
+  display: flex;
+
+}
+.header {
+  position: fixed;
+  top: 16px;
+  background-color: #fff;
+  width: 70%;
+  z-index: 999;
+}
+.work_left {
+
+  width: 50%;
+
+}
+.work_right{
+
+  width: 50%;
+
+}
+.bottom{
+  display: flex;
+
+}
+
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+  background: none;
+}
+
+.work_right tr:nth-child(2n) {
+  background: rgba(125, 143, 145, 0.76);
+}
+
+.bottom_left {
+  width: 50%;
+
+}
+.bottom_right{
+  margin-left: 50px;
+  width: 50%;
+}
+.planTitle {
+  text-align: center;
+  font-weight: bold;
+}
+.footer-bar {
+  position: fixed;
+  float: right;
+  bottom: 42px;
+  right: 40px;
+  background-color: rgb(197, 197, 203);
+  width: 100%;
+  height: 50px;
+}
+.footer-bar div{
+  float: right;
+  right: 20px;
+  margin-right: 200px;
+}
+.dynamic-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.dynamic-button:hover {
+  color: #777;
+}
+
+.btn {
+  float: right;
+  margin-top: 10px;
+  margin-right: 98px;
+}
+
+.approveBox {
+  margin-top: 50px;
+  display: flex;
+}
+.approveBox span{
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.approveComment {
+  text-align: center;
+  font-size: large;
+
+
+}

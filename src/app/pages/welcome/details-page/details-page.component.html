@@ -1,0 +1,44 @@
+<button nz-button nzType="primary" (click)="open()">详细信息</button>
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="记录详情"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <div nz-form *nzDrawerContent>
+    <nz-form-label nzRequired  nzFor="nameInput">姓名</nz-form-label>
+    <input nz-input id="nameInput" [(ngModel)]="detailNote.name" disabled  #name/>
+    <nz-form-label nzRequired  for="dateInput">日期</nz-form-label>
+    <nz-date-picker id="dateInput"
+                    nzShowTime
+                    nzFormat="yyyy-MM-dd HH:mm:ss"
+                    [(ngModel)] = date
+                    (nzOnOk)="onOk($event)"
+                    disabled
+    ></nz-date-picker>
+    <br/>
+    <nz-form-label nzRequired  nzFor="stepInput">项目阶段</nz-form-label>
+    <input nz-input id="stepInput" [(ngModel)]="detailNote.projectStep" disabled #step/><br/><br/>
+    <nz-form-label id="content" nzRequired  nzFor="contentInput">工作内容</nz-form-label>
+    <textarea nz-input id="contentInput" [(ngModel)]="detailNote.workContent" disabled #content></textarea>
+    <br/><br/>
+    <nz-form-label nzRequired  nzFor="achInput">记录内容</nz-form-label>
+    <textarea nz-input id="achInput" [(ngModel)]="detailNote.achievements" disabled #achievements></textarea>
+    <br/><br/>
+    <nz-form-label nzRequired  nzFor="resInput">引用资源</nz-form-label>
+    <textarea nz-input id="resInput" [(ngModel)]="detailNote.resource" disabled #resource></textarea>
+    <br/><br/>
+    <nz-form-label nzRequired  nzFor="proInput">问题</nz-form-label>
+    <textarea nz-input id="proInput" [(ngModel)]="detailNote.problem" disabled #problem></textarea>
+  </div>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="clear()">返回</button>
+     <button nz-button nzType="primary" (click)="toEdit()">编辑</button>
+    </div>
+  </ng-template>
+</nz-drawer>

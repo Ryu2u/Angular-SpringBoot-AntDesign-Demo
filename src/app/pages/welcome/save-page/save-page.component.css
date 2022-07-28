@@ -1,0 +1,19 @@
+
+.header {
+  position: fixed;
+  top: 16px;
+  background-color: #fff;
+  width: 70%;
+  z-index: 999;
+}
+
+.btn {
+  float: right;
+  position: relative;
+  top: 20px;
+  right: 600px;
+}
+.btn button{
+  margin-left: 100px;
+}
+

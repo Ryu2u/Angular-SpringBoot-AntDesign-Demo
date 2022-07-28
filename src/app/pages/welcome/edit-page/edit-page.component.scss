@@ -1,0 +1,49 @@
+
+input {
+  width: 240px;
+  margin-top: 30px;
+}
+
+nz-form-label {
+  display: inline-block;
+  width: 70px;
+  margin-left: 200px;
+
+}
+.header {
+  position: fixed;
+  top: 16px;
+  background-color: #fff;
+  width: 70%;
+  z-index: 999;
+}
+
+#nameInput {
+  width: 200px;
+}
+
+#dateInput {
+  width: 200px;
+}
+
+#contentInput {
+  width: 240px;
+  margin-top: 30px;
+}
+#achInput{
+  height: 200px;
+}
+
+textarea {
+  width: 400px;
+  vertical-align: top;
+}
+.btn {
+  float: right;
+  position: relative;
+  top: 150px;
+  right: 600px;
+}
+.btn button{
+  margin-left: 100px;
+}

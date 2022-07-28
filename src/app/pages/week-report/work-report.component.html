@@ -1,0 +1,210 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-search">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-report">新增页面</a>
+    </li>
+  </ul>
+</div>
+<div>
+  <div nz-row [nzGutter]="16" class="top">
+    <div style="font-size: 20px;margin-top: 20px" nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="2">
+      第 <span *ngIf="weekNumber">{{weekNumber}}</span> 周
+    </div>
+    <div nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="2">
+      <nz-form-label nzRequired nzFor="name">姓名 </nz-form-label>
+      <input nz-input id="name" [(ngModel)]="user.username" disabled/>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="1">
+      <nz-form-label nzRequired nzFor="job">部门 </nz-form-label><br/>
+      <nz-select id="job" style="width: 98px" [(ngModel)]="user.department" disabled>
+        <nz-option [nzLabel]="'测试部门'" [nzValue]="'测试部门'"></nz-option>
+        <nz-option [nzLabel]="'管理部门'" [nzValue]="'管理部门'"></nz-option>
+        <nz-option [nzLabel]="'开发部门'" [nzValue]="'开发部门'"></nz-option>
+        <nz-option [nzLabel]="'生产部门'" [nzValue]="'生产部门'"></nz-option>
+      </nz-select>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="3" [nzOffset]="1">
+      <nz-form-label nzRequired nzFor="date">日期 </nz-form-label>
+      <nz-date-picker id="date"
+                      nzShowTime
+                      nzFormat="yyyy-MM-dd HH:mm:ss"
+                      [(ngModel)] = date
+                      (nzOnOk)="onOk($event)"
+                      [nzAllowClear]="true"
+                      disabled
+      ></nz-date-picker>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="3" [nzOffset]="1">
+      <nz-form-label nzRequired nzFor="achieve">本周工作达成率</nz-form-label>
+      <nz-input-number style="width:100px" id="achieve"  [nzMin]="0" [nzMax]="100" [nzStep]="1" [(ngModel)]="weekReport.achieveRate" nzPlaceHolder="0%~ 100%"></nz-input-number>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="state">周报状态 </nz-form-label>
+      <nz-select id="state"  [(ngModel)]="weekReport.state" disabled>
+        <nz-option nzLabel="新增" [nzValue]="'新增'"></nz-option>
+        <nz-option nzLabel="审批" [nzValue]="'审批'"></nz-option>
+        <nz-option nzLabel="归档" [nzValue]="'归档'"></nz-option>
+      </nz-select>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="approval">审阅人 </nz-form-label>
+      <nz-select id="approval" [ngModel]="'张三'" [(ngModel)]="weekReport.approver">
+        <nz-option nzLabel="张三" [nzValue]="'张三'"></nz-option>
+        <nz-option nzLabel="王五" [nzValue]="'王五'"></nz-option>
+        <nz-option nzLabel="李四" [nzValue]="'李四'"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div class="work_middle">
+    <div class="work_left">
+      <div class="planTitle">本周工作内容</div>
+      <br/>
+      <nz-form-label nzRequired nzFor="monday" style="vertical-align: top">周一</nz-form-label>
+      <textarea rows="2" nz-input id="monday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.mondayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="tuesday" style="vertical-align: top">周二</nz-form-label>
+      <textarea rows="2" nz-input id="tuesday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.tuesdayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="wednesday" style="vertical-align: top">周三</nz-form-label>
+      <textarea rows="2" nz-input id="wednesday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.wednesdayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="thursday" style="vertical-align: top">周四</nz-form-label>
+      <textarea rows="2" nz-input id="thursday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.thursdayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="friday" style="vertical-align: top">周五</nz-form-label>
+      <textarea rows="2" nz-input id="friday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.fridayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="saturday" style="vertical-align: top">周六</nz-form-label>
+      <textarea rows="2" nz-input id="saturday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.saturdayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="sunday" style="vertical-align: top">周日</nz-form-label>
+      <textarea rows="2" nz-input id="sunday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.sundayWork" placeholder="工作内容长度必须小于120个字符"></textarea>
+      <br/><br/>
+    </div>
+    <div class="work_right">
+      <div  class="planTitle">本周工作安排</div>
+      <br/>
+      <nz-table nzBordered nzShowPagination="true" nzShowSizeChanger nzSize="small" [nzScroll]="{y : '240px'}">
+        <thead>
+        <tr>
+          <th nzWidth="10%">序号</th>
+          <th nzAlign="center" nzWidth="45%">安排内容</th>
+          <th nzWidth="15%">预计开始时间</th>
+          <th nzWidth="15%">预计终了时间</th>
+          <th nzWidth="15%">备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of reportDataList">
+          <td>{{data.id}}</td>
+          <td>{{data.work}}</td>
+          <td>{{data.startTime}}</td>
+          <td>{{data.endTime}}</td>
+          <td>{{data.comment}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+      <div style="margin-top: 7px"  class="planTitle">心得收获</div>
+      <textarea style="margin-top: 10px" nz-input rows="3" [(ngModel)]="weekReport.experienceHarvest" placeholder="内容必须小于150个字符"></textarea>
+      <div style="margin-top: 7px"  class="planTitle">问题建议</div>
+      <textarea style="margin-top: 10px" nz-input rows="3" [(ngModel)]="weekReport.problemSuggest" placeholder="内容必须小于150个字符"></textarea>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom_left">
+      <div  class="planTitle">下周工作安排</div>
+<!--      <app-work-plan></app-work-plan>-->
+      <table cellpadding="4">
+        <thead>
+        <tr align="center">
+          <td width="45%">工作安排</td>
+          <td width="15%">预计开始时间</td>
+          <td width="15%">预计终了时间</td>
+          <td width="15%">备注</td>
+          <td width="10%">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of planDataList">
+          <td><input nz-input [(ngModel)]="data.work" placeholder="内容必须小于80个字符"/></td>
+          <td>
+            <nz-date-picker
+              [nzDisabledDate]="disabledStartDate(data.endTime!)"
+              nzShowTime
+              nzFormat="yyyy-MM-dd HH:mm:ss"
+              [(ngModel)]="data.startTime"
+              nzPlaceHolder="Start"
+            ></nz-date-picker>
+          </td>
+          <td>
+            <nz-date-picker
+              #endDatePicker
+              [nzDisabledDate]="disabledEndDate(data.startTime!)"
+              nzShowTime
+              nzFormat="yyyy-MM-dd HH:mm:ss"
+              [(ngModel)]="data.endTime"
+              nzPlaceHolder="End"
+            ></nz-date-picker>
+          </td>
+          <td><input nz-input [(ngModel)]="data.comment" placeholder="内容必须小于80个字符"/></td>
+          <td align="center">
+            <i nz-icon nzType="plus-circle" class="dynamic-button" nzTheme="outline" (click)="addWeekPlan()" ></i>&nbsp;
+            <i *ngIf="data.rowIndex != 1" nz-icon nzType="minus-circle-o" class="dynamic-button" nz-popconfirm
+               nzPopconfirmTitle="Are you sure delete this task?"
+               nzPopconfirmPlacement="bottom"
+               (nzOnConfirm)="planConfirm(data.rowIndex!)"
+               (nzOnCancel)="cancel()"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bottom_right">
+      <div  class="planTitle">本周未完成工作</div>
+<!--      <app-work-undone></app-work-undone>-->
+
+      <table cellpadding="4" width="100%">
+        <thead>
+        <tr align="center">
+          <td width="40%">内容分析</td>
+          <td width="40%">解决方法</td>
+          <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of undoneDataList">
+          <td>
+            <textarea nz-input rows="2" [(ngModel)]="data.workAnalyse" placeholder="内容必须小于120个字符"></textarea>
+          </td>
+          <td>
+            <textarea nz-input rows="2" [(ngModel)]="data.solution" placeholder="内容必须小于120个字符"></textarea>
+          </td>
+          <td align="center">
+            <i nz-icon nzType="plus-circle" class="dynamic-button" nzTheme="outline" (click)="addUndoneWork()" ></i>&nbsp;
+            <i *ngIf="data.rowIndex != 1" nz-icon nzType="minus-circle-o" class="dynamic-button" nz-popconfirm
+               nzPopconfirmTitle="Are you sure delete this task?"
+               nzPopconfirmPlacement="bottom"
+               (nzOnConfirm)="undoneConfirm(data.rowIndex!)"
+               (nzOnCancel)="cancel()"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br/><br/><br/>
+
+<div class="footer-bar">
+  <div>
+    <button nz-button [nzType]="'primary'" (click)="saveWeekReport()">保存工作内容</button>
+  </div>
+</div>

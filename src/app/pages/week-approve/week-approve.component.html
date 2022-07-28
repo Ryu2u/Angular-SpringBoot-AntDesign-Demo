@@ -1,0 +1,172 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-search">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-report">新增页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/week-approve">审批页面</a>
+    </li>
+  </ul>
+</div>
+<div>
+  <div nz-row [nzGutter]="16" class="top">
+    <div style="font-size: 20px;margin-top: 20px" nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="2">
+      第 <span>{{weekReport.weekNumber}}</span> 周
+    </div>
+    <div nz-col nzSm="24" nzMd="12" nzLg="8" nzXl="2">
+      <nz-form-label nzRequired nzFor="name">姓名</nz-form-label>
+      <input nz-input id="name" [(ngModel)]="weekReport.name" disabled/>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="job">部门</nz-form-label>
+      <input nz-input id="job" [(ngModel)]="weekReport.duty" disabled/>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="3" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="date">日期</nz-form-label>
+      <input nz-input id="date" [(ngModel)]="weekReport.date" disabled/>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="1">
+      <nz-form-label nzRequired nzFor="achieve">本周工作达成率</nz-form-label>
+      <nz-input-group nzAddOnAfter="%">
+        <input nz-input id="achieve" [(ngModel)]="weekReport.achieveRate" disabled/>
+      </nz-input-group>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="state">周报状态</nz-form-label>
+      <input nz-input id="state" [(ngModel)]="weekReport.state" disabled/>
+    </div>
+
+    <div nz-col nzSm="12" nzMd="8" nzLg="6" nzXl="2" [nzOffset]="2">
+      <nz-form-label nzRequired nzFor="approval">审阅人</nz-form-label>
+      <input nz-input id="approval" [(ngModel)]="weekReport.approver" disabled>
+    </div>
+  </div>
+  <div class="work_middle">
+    <div class="work_left">
+      <div class="planTitle">本周工作内容</div>
+      <br/>
+      <nz-form-label nzRequired nzFor="monday" style="vertical-align: top">周一</nz-form-label>
+      <textarea rows="2" nz-input id="monday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.mondayWork!"
+                disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="tuesday" style="vertical-align: top">周二</nz-form-label>
+      <textarea rows="2" nz-input id="tuesday" style="width: 85%;margin-left: 20px"
+                [(ngModel)]="weekReport.tuesdayWork!" disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="wednesday" style="vertical-align: top">周三</nz-form-label>
+      <textarea rows="2" nz-input id="wednesday" style="width: 85%;margin-left: 20px"
+                [(ngModel)]="weekReport.wednesdayWork" disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="thursday" style="vertical-align: top">周四</nz-form-label>
+      <textarea rows="2" nz-input id="thursday" style="width: 85%;margin-left: 20px"
+                [(ngModel)]="weekReport.thursdayWork" disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="friday" style="vertical-align: top">周五</nz-form-label>
+      <textarea rows="2" nz-input id="friday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.fridayWork"
+                disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="saturday" style="vertical-align: top">周六</nz-form-label>
+      <textarea rows="2" nz-input id="saturday" style="width: 85%;margin-left: 20px"
+                [(ngModel)]="weekReport.saturdayWork" disabled></textarea>
+      <br/><br/>
+      <nz-form-label nzRequired nzFor="sunday" style="vertical-align: top">周日</nz-form-label>
+      <textarea rows="2" nz-input id="sunday" style="width: 85%;margin-left: 20px" [(ngModel)]="weekReport.sundayWork"
+                disabled></textarea>
+      <br/><br/>
+    </div>
+    <div class="work_right">
+      <div class="planTitle">本周工作安排</div>
+      <br/>
+      <nz-table nzBordered nzShowPagination="true" nzShowSizeChanger nzSize="small" [nzScroll]="{y : '240px'}">
+        <thead>
+        <tr>
+          <th nzWidth="10%">序号</th>
+          <th nzAlign="center" nzWidth="45%">安排内容</th>
+          <th nzWidth="15%">预计开始时间</th>
+          <th nzWidth="15%">预计终了时间</th>
+          <th nzWidth="15%">备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of lastWeekList">
+          <td>{{data.id}}</td>
+          <td>{{data.work}}</td>
+          <td>{{data.startTime}}</td>
+          <td>{{data.endTime}}</td>
+          <td>{{data.comment}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+      <div style="margin-top: 7px" class="planTitle">心得收获</div>
+      <textarea style="margin-top: 10px" nz-input rows="3" [(ngModel)]="weekReport.experienceHarvest"
+                disabled></textarea>
+      <div style="margin-top: 7px" class="planTitle">问题建议</div>
+      <textarea style="margin-top: 10px" nz-input rows="3" [(ngModel)]="weekReport.problemSuggest" disabled></textarea>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom_left">
+      <div class="planTitle">下周工作安排</div>
+      <!--      <app-work-plan></app-work-plan>-->
+      <nz-table nzBordered nzShowPagination="true" nzShowSizeChanger nzSize="small" [nzScroll]="{y : '170px'}">
+        <thead>
+        <tr>
+          <th>序号</th>
+          <th nzWidth="45%">工作安排</th>
+          <th nzWidth="15%">预计开始时间</th>
+          <th nzWidth="15%">预计终了时间</th>
+          <th nzWidth="15%">备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of planList">
+          <td>{{data.id}}</td>
+          <td>{{data.work}}</td>
+          <td>{{data.startTime}}</td>
+          <td>{{data.endTime}}</td>
+          <td>{{data.comment}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+    <div class="bottom_right">
+      <div class="planTitle">本周未完成工作</div>
+      <nz-table nzBordered nzShowPagination="true" nzShowSizeChanger nzSize="small" [nzScroll]="{y : '170px'}">
+        <thead>
+        <tr>
+          <th width="40%">内容分析</th>
+          <th width="40%">解决方法</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of undoneList">
+          <td>{{data.workAnalyse}}</td>
+          <td>{{data.solution}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>
+
+<div class="approveBox">
+  <div style="font-size: 20px;margin-right: 50px"><span>审批者:{{user.username}}</span><span style="margin-left: 20px">批示时间:{{date.toLocaleString()}}</span></div>
+  <div style="margin-right: 100px">
+    <label style="font-size: 20px;margin-left: 30px;vertical-align: top;" for="content">批示内容:</label>
+    <textarea style="width: 400px;height: 50px" id="content" rows="2" [(ngModel)]="weekApprove.comment"></textarea>
+  </div>
+  <div style="margin-right: 100px;margin-top: 6px; font-size: 20px"><button nz-button [nzType]="'primary'" (click)="approveWeek(0)">待修改</button></div>
+  <div style="margin-right: 100px;margin-top: 6px; font-size: 20px"><button nz-button [nzType]="'primary'" (click)="approveWeek(1)">审批通过</button></div>
+</div>
+<div class="approveComment">
+  <div style="margin-right: 450px">
+    <p>上次审批信息: {{weekApprove.lastComment}}</p>
+  </div>
+</div>

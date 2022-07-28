@@ -1,0 +1,43 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/worknote">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/savePage" >新增页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      编辑页面
+    </li>
+  </ul>
+</div>
+
+<nz-form-label nzRequired  nzFor="nameInput">姓名</nz-form-label>
+<input nz-input id="nameInput" disabled [(ngModel)]="editNote.name" #name/>
+<nz-form-label nzRequired  for="dateInput">日期</nz-form-label>
+<nz-date-picker id="dateInput"
+                nzShowTime
+                nzFormat="yyyy-MM-dd HH:mm:ss"
+                [(ngModel)] = date
+                (nzOnOk)="onOk($event)"
+></nz-date-picker>
+<br/><br/>
+<nz-form-label nzRequired  nzFor="stepInput">项目阶段</nz-form-label>
+<input nz-input id="stepInput" [(ngModel)]="editNote.projectStep" #step/>
+<nz-form-label nzRequired  style="margin-left: 160px" nzFor="contentInput">工作内容</nz-form-label>
+<textarea nz-input id="contentInput" [(ngModel)]="editNote.workContent" #content></textarea>
+<br/><br/>
+<nz-form-label nzRequired  nzFor="achInput">记录内容</nz-form-label>
+<textarea nz-input id="achInput" [(ngModel)]="editNote.achievements" #achievements></textarea>
+<br/><br/>
+<nz-form-label nzRequired  nzFor="resInput">引用资源</nz-form-label>
+<textarea nz-input id="resInput" [(ngModel)]="editNote.resource" #resource></textarea>
+<br/><br/>
+<nz-form-label nzRequired  nzFor="proInput">问题</nz-form-label>
+<textarea nz-input id="proInput" [(ngModel)]="editNote.problem" #problem></textarea>
+<div class="btn">
+  <button nz-button (click)="back()">返回</button>
+  <button nz-button (click)="update()">更新</button>
+  <button nz-button (click)="delete()">删除</button>
+
+</div>

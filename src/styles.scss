@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.content-section{
+  position: relative;
+  margin: 24px;
+}
+.w100{
+  width:100%!important;
+}
+.header {
+  position: fixed;
+  top: 16px;
+  background-color: #fff;
+  width: 70%;
+  z-index: 999;
+}

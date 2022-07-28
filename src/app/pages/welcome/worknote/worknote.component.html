@@ -1,0 +1,67 @@
+<div class="header">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/worknote">查询页面</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a routerLink="/welcome/savePage">新增页面</a>
+    </li>
+  </ul>
+</div>
+<div id="header">
+  <label for="nameInput">姓名:</label>
+  <input id="nameInput" type="text" nz-input placeholder="input search text" #name/>
+  <label for="dateInput">日期:</label>
+  <nz-date-picker id="dateInput"
+                  nzShowTime
+                  nzFormat="yyyy-MM-dd HH:mm:ss"
+                  [(ngModel)]=date
+                  (nzOnOk)="onOk($event)"
+  ></nz-date-picker>
+  <label for="stepInput">项目阶段:</label>
+  <input id="stepInput" type="text" nz-input placeholder="input search text" #step/><br/>
+  <label for="contentInput">工作内容:</label>
+  <input id="contentInput" type="text" nz-input placeholder="input search text" #content/>
+  <label for="achInput">记录内容:</label>
+  <input id="achInput" type="text" nz-input placeholder="input search text" #achievements/><br/>
+  <label for="resInput">引用资源:</label>
+  <input id="resInput" type="text" nz-input placeholder="input search text" #resource/>
+  <label for="proInput">问题:</label>
+  <input id="proInput" type="text" nz-input placeholder="input search text" #problem/>
+</div>
+<div id="btn">
+  <button nz-button (click)="clear(name,step,content,achievements,resource,problem)">清除</button>
+  <button nz-button
+          (click)="search(name.value,step.value,content.value,achievements.value,resource.value,problem.value)">查询
+  </button>
+</div>
+<ng-template #suffixButton>
+  <button nz-button nzType="primary" nzSize="large" #search nzSearch>Search</button>
+</ng-template>
+
+<nz-table nzShowPagination="true" nzShowSizeChanger #middleTable nzSize="small" [nzData]="dataList">
+  <thead>
+  <tr>
+    <th *ngFor="let colum of listOfColum" [nzSortFn]="colum.compare">
+      {{colum.title}}
+    </th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of middleTable.data">
+    <td>{{data.id}}</td>
+    <td>{{data.date}}</td>
+    <td>{{data.name}}</td>
+    <td>{{data.projectStep}}</td>
+    <td>{{data.workContent}}</td>
+    <td>{{data.achievements}}</td>
+    <td>{{data.resource}}</td>
+    <td>{{data.problem}}</td>
+    <td>
+      <app-details-page [detailNote]="data"></app-details-page>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+

@@ -1,0 +1,19 @@
+export class WeekReport{
+  id?:number;
+  weekNumber?:number;
+  name?:string;
+  duty?:string;
+  date?:any|null;
+  achieveRate?:number;
+  state?:string;
+  approver?:string;
+  mondayWork?:string;
+  tuesdayWork?:string;
+  wednesdayWork?:string;
+  thursdayWork?:string;
+  fridayWork?:string;
+  saturdayWork?:string;
+  sundayWork?:string;
+  experienceHarvest?:string;
+  problemSuggest?:string;
+}
